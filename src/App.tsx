@@ -1,6 +1,6 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { adaptLesson } from "./lib/gemini"
-import { AnimatePresence, motion, useScroll, useTransform } from 'framer-motion'
+import { motion, useScroll, useTransform } from 'framer-motion'
 import type { Transition } from 'framer-motion'
 
 type AccessMode = 'ADHD mode' | 'Dyslexia mode' | 'Calm mode'
@@ -134,36 +134,6 @@ function HeroSection() {
       </motion.div>
     </section>
   )
-}
-
-function adaptContent(content: string, modes: AccessMode[]) {
-  const clean = content.trim() || sampleContent
-  const sentences = clean
-    .replace(/\s+/g, ' ')
-    .split(/(?<=[.!?])\s+/)
-    .filter(Boolean)
-  const first = sentences[0] ?? clean
-  const second = sentences[1] ?? 'Practice one idea at a time, then pause to check understanding.'
-  const third = sentences[2] ?? 'Use a visual example before asking for a written response.'
-  const focusLabel = modes.includes('ADHD mode') ? 'One task at a time' : 'Clear learning path'
-  const dyslexiaNote = modes.includes('Dyslexia mode')
-    ? 'Use shorter lines, plain wording, and extra spacing.'
-    : 'Keep wording direct and predictable.'
-  const calmNote = modes.includes('Calm mode')
-    ? 'Begin with reassurance and remove urgency.'
-    : 'Use a steady pace and supportive feedback.'
-
-  return {
-    goal: first.replace(/\.$/, ''),
-    steps: [
-      `Start here: ${first}`,
-      `Then explore: ${second}`,
-      `Show understanding: ${third}`,
-    ],
-    supports: [focusLabel, dyslexiaNote, calmNote],
-    teacherNote:
-      'EduBridge would present this as a calm sequence, watch effort signals, and offer a pause or visual pathway if the learner starts to overload.',
-  }
 }
 
 function TryAiSection() {
