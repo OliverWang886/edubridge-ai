@@ -599,20 +599,6 @@ function FinalCtaSection() {
 }
 
 export default function App() {
-  const [input, setInput] = useState(sampleContent)
-
-const [mode, setMode] = useState<
-  "ADHD" | "Dyslexia" | "Calm"
->("Calm")
-
-const [loading, setLoading] = useState(false)
-
-const [result, setResult] = useState({
-  title: "",
-  steps: [] as string[],
-  support: [] as string[],
-  summary: "",
-})
   return (
     <main className="relative min-h-screen overflow-hidden bg-[#fbf3e8] text-[#3f3446]">
       <AmbientOrbs />
